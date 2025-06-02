@@ -106,63 +106,62 @@ export default function App() {
 						<TextInput
 							mt={'md'}
 							ref={taskTitle}
-							placeholder={'Task Title'}
 							required
+							placeholder={'Task Title'}
 							label={'Title'}
 						/>
 						<TextInput
 							ref={taskSummary}
 							mt={'md'}
+							required
 							placeholder={'Task Summary'}
 							label={'Summary'}
 						/>
 						<Group mt={'md'} position={'apart'}>
 							<Button
 								onClick={() => {
-									setOpened(false);
+									createTask();
+									
+								}}>
+								Create Task
+							</Button>
+							<Button
+								onClick={() => {
 								}}
 								variant={'subtle'}>
 								Cancel
 							</Button>
-							<Button
-								onClick={() => {
-									createTask();
-									setOpened(false);
-								}}>
-								Create Task
-							</Button>
 						</Group>
 					</Modal>
-					<Container size={550} my={40}>
+					<Container size={550} my={200}>
 						<Group position={'apart'}>
 							<Title
 								sx={theme => ({
 									fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 									fontWeight: 900,
 								})}>
-								My Tasks
+								Lorem ipsum
 							</Title>
 							<ActionIcon
 								color={'blue'}
-								onClick={() => toggleColorScheme()}
+								onClick
 								size='lg'>
 								{colorScheme === 'dark' ? (
-									<Sun size={16} />
+									<MoonStars size={400} />
 								) : (
-									<MoonStars size={16} />
+									<MoonStars size={400} />
 								)}
 							</ActionIcon>
 						</Group>
-						{tasks.length > 0 ? (
+						{tasks.length ? (
 							tasks.map((task, index) => {
-								if (task.title) {
 									return (
 										<Card withBorder key={index} mt={'sm'}>
 											<Group position={'apart'}>
-												<Text weight={'bold'}>{task.title}</Text>
+												<Text weight={'bold'}>{task.summary}</Text>
 												<ActionIcon
 													onClick={() => {
-														deleteTask(index);
+														
 													}}
 													color={'red'}
 													variant={'transparent'}>
@@ -170,13 +169,12 @@ export default function App() {
 												</ActionIcon>
 											</Group>
 											<Text color={'dimmed'} size={'md'} mt={'sm'}>
-												{task.summary
-													? task.summary
+												{task.title
+													? task.title
 													: 'No summary was provided for this task'}
 											</Text>
 										</Card>
 									);
-								}
 							})
 						) : (
 							<Text size={'lg'} mt={'md'} color={'dimmed'}>
