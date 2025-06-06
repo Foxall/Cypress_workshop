@@ -120,13 +120,13 @@ export default function App() {
 						<Group mt={'md'} position={'apart'}>
 							<Button
 								onClick={() => {
-									createTask();
-									
 								}}>
 								Create Task
 							</Button>
 							<Button
 								onClick={() => {
+									createTask();
+									setOpened(false);
 								}}
 								variant={'subtle'}>
 								Cancel
